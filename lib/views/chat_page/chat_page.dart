@@ -30,7 +30,7 @@ class ChatPage extends StatelessWidget {
         child: AppBar(
     leadingWidth: 30,
       elevation: 0.0,
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Theme.of(context).colorScheme.background,
       foregroundColor: Colors.black,
            title: Row(
             

@@ -15,7 +15,7 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
 
         title: Text("H O M E"),

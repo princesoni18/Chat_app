@@ -17,7 +17,7 @@ class MyUserListBlock extends StatelessWidget {
       },
       child: Container(
        decoration: BoxDecoration(
-        color: Colors.grey[400],
+        color: Theme.of(context).colorScheme.primary,
     
         borderRadius: BorderRadius.circular(8)
        ),

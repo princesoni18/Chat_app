@@ -74,7 +74,7 @@ void scrollDown(){
         preferredSize: Size.fromHeight(70.0),
         child: AppBar(
     leadingWidth: 30,
-      elevation: 0.0,
+      elevation:0.0,
       backgroundColor: Theme.of(context).colorScheme.background,
       foregroundColor: Theme.of(context).colorScheme.inversePrimary,
            title: Row(
@@ -89,10 +89,9 @@ void scrollDown(){
               ),
             ),
             
-            Padding(
-              padding: const EdgeInsets.only(left: 15),
-              child: Text(widget.user.name),
-            )
+           const SizedBox(width: 10,),
+               Text(widget.user.name,overflow: TextOverflow.ellipsis,),
+            
 
             ],
            ),

@@ -12,17 +12,62 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 
-class ChatPage extends StatelessWidget {
+class ChatPage extends StatefulWidget {
   final receiverID;
   final senderID;
   final UserModel user;
- 
-  
-
   ChatPage({super.key, required this.receiverID, required this.senderID,required this.user});
 
   @override
+  State<ChatPage> createState() => _ChatPageState();
+}
+
+class _ChatPageState extends State<ChatPage> {
+  final FirebaseAuth _auth=FirebaseAuth.instance;
+
+  final FocusNode MyfocusNode=FocusNode();
+  final TextEditingController _messageController = TextEditingController();
+
+   final ScrollController _scrollcontroller=ScrollController();
+void scrollDown(){
+    
+   
+    _scrollcontroller.animateTo(_scrollcontroller.position.maxScrollExtent, duration: Duration(milliseconds: 500), curve: Curves.fastEaseInToSlowEaseOut);
+
+
+   }
+
+   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    MyfocusNode.addListener((){
+
+    if(MyfocusNode.hasFocus){
+      Future.delayed(Duration(milliseconds: 500),()=> scrollDown());
+      
+    }
+  }
+    
+  );
+  Future.delayed(Duration(milliseconds: 500),()=> scrollDown());
+    
+  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    MyfocusNode.dispose();
+    _messageController.dispose();
+  }
+
+   
+
+  @override
   Widget build(BuildContext context) {
+
+    
     return  Scaffold(
     backgroundColor: Theme.of(context).colorScheme.background,
       appBar: PreferredSize(
@@ -31,7 +76,7 @@ class ChatPage extends StatelessWidget {
     leadingWidth: 30,
       elevation: 0.0,
       backgroundColor: Theme.of(context).colorScheme.background,
-      foregroundColor: Colors.black,
+      foregroundColor: Theme.of(context).colorScheme.inversePrimary,
            title: Row(
             
             children: [
@@ -40,13 +85,13 @@ class ChatPage extends StatelessWidget {
               padding: const EdgeInsets.only(top: 5),
               child: CircleAvatar(
                 radius: 25,
-                backgroundImage: NetworkImage(user.url),
+                backgroundImage: NetworkImage(widget.user.url),
               ),
             ),
             
             Padding(
               padding: const EdgeInsets.only(left: 15),
-              child: Text(user.name),
+              child: Text(widget.user.name),
             )
 
             ],
@@ -60,40 +105,21 @@ class ChatPage extends StatelessWidget {
           children: [
             Expanded(
                 child:
-                    Message_List(senderID: senderID, receiverID: receiverID)),
-            _sendMessage(receiverID),
+                    Message_List(context)),
+           _sendMessage(widget.receiverID),
           ],
         ),
       
     );
   }
 
-
-
-
-
-
-
-  
+  Widget Message_List(BuildContext context) {
+     
    
-}
-
-class Message_List extends StatelessWidget {
-  final FirebaseAuth _auth=FirebaseAuth.instance;
-   Message_List({
-    super.key,
-    required this.senderID,
-    required this.receiverID,
-  });
-
-  final String senderID;
-  final String receiverID;
-
-  @override
-  Widget build(BuildContext context) {
+   
    
     return StreamBuilder(
-      stream: ChatService().getMessages(senderID, receiverID),
+      stream: ChatService().getMessages(widget.senderID, widget.receiverID),
       
       builder: (context, snapshot) {
      
@@ -105,11 +131,12 @@ class Message_List extends StatelessWidget {
 
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
-            child: CircularProgressIndicator(),
+            child:Text("Loading..."),
           );
         }
 
         return ListView(
+          controller: _scrollcontroller,
           children: snapshot.data!.docs.map((doc) => _listItems(doc)).toList(),
         );
 
@@ -134,13 +161,10 @@ class Message_List extends StatelessWidget {
   );
 }
 
- 
-}
-
-
-
 Widget _sendMessage(String receiverID) {
-  final TextEditingController _messageController = TextEditingController();
+  
+  
+  
   void _sendText(String receiverID)async{
 
 
@@ -148,9 +172,10 @@ Widget _sendMessage(String receiverID) {
     return;
   }
   else{
-   ChatService().sendMessage(receiverID, _messageController.text);
-
+   await ChatService().sendMessage(receiverID, _messageController.text);
+   
    _messageController.clear();
+   scrollDown();
 
   }
 }
@@ -163,8 +188,10 @@ Widget _sendMessage(String receiverID) {
         Expanded(
           
             child: MyTextField(
+              
              hinttext: "Type Your Message",
               controller: _messageController,
+              MyfocusNode: MyfocusNode,
             ),
           
         ),
@@ -185,6 +212,8 @@ Widget _sendMessage(String receiverID) {
       ],
     ),
   );
+
+
+
 }
-
-
+}

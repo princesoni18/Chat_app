@@ -1,9 +1,9 @@
 import 'package:chat_app/controllers/services/chat_service.dart';
-import 'package:chat_app/models/user_model.dart';
+
 import 'package:chat_app/views/home/app_drawer.dart';
 import 'package:chat_app/views/home/user_listTile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 

@@ -5,13 +5,14 @@ class MyTextField extends StatelessWidget {
   final String hinttext;
   final Icon? icon;
   final TextEditingController controller;
+  final FocusNode? MyfocusNode;
   
-  const MyTextField({super.key,required this.hinttext,required this.controller,this.icon});
+  const MyTextField({super.key,required this.hinttext,required this.controller,this.icon,this.MyfocusNode});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-    
+    focusNode: MyfocusNode,
       
       controller: controller,
       decoration:  InputDecoration(

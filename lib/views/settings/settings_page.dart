@@ -1,9 +1,11 @@
 
+import 'package:chat_app/themes/bloc/theme_bloc.dart';
 import 'package:chat_app/themes/theme_provider.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 
@@ -13,7 +15,7 @@ class SettingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final prov=Provider.of<ThemeProvider>(context,listen: false);
+    ThemeBloc bloc=BlocProvider.of<ThemeBloc>(context,listen: false);
     return Scaffold(
       
       backgroundColor: Theme.of(context).colorScheme.background,
@@ -41,8 +43,8 @@ class SettingPage extends StatelessWidget {
           children: [
             Text("Theme Mode"),
 
-            CupertinoSwitch(value: prov.isdarkmode, onChanged: ((value) {
-              prov.toggle();
+            CupertinoSwitch(value: bloc.getTheme, onChanged: ((value) {
+             bloc.add(ThemeChangeEvent());
             }))
           ],
         ),

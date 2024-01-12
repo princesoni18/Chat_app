@@ -8,14 +8,15 @@ import 'package:chat_app/views/login_page/login_page.dart';
 import 'package:chat_app/views/register_page/bloc/register_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lottie/lottie.dart';
 
+
+// ignore: must_be_immutable
 class Register_Page extends StatelessWidget {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPassword = TextEditingController();
-  Uint8List? file;
+   Uint8List? file;
 
   Register_Page({super.key});
   RegisterBloc bloc = RegisterBloc();
@@ -89,7 +90,7 @@ class Register_Page extends StatelessWidget {
               child: MyTextField(
                 hinttext: "Email",
                 controller: _emailController,
-                icon: Icon(Icons.email_rounded),
+                icon: const Icon(Icons.email_rounded),
               ),
             ),
 
@@ -117,7 +118,7 @@ class Register_Page extends StatelessWidget {
               child: MyTextField(
                 hinttext: "confirm password",
                 controller: _confirmPassword,
-                icon: Icon(Icons.lock),
+                icon:const  Icon(Icons.lock),
               ),
             ),
             const SizedBox(
@@ -152,7 +153,7 @@ class Register_Page extends StatelessWidget {
                 Expanded(
                   child: GestureDetector(
                     onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login_Page(),)),
-                    child: Text("Log in",style: TextStyle(fontWeight: FontWeight.bold),)),
+                    child:const  Text("Log in",style: TextStyle(fontWeight: FontWeight.bold),)),
                 )],
               ),
             )
@@ -184,7 +185,7 @@ class Initial_Profile extends StatelessWidget {
           top: 65,
           child: IconButton(
               onPressed: () => bloc.add(SelectImageEvent()),
-              icon: Icon(Icons.add_a_photo_rounded)))
+              icon:const  Icon(Icons.add_a_photo_rounded)))
     ]);
   }
 }

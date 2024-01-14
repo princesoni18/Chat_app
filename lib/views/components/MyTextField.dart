@@ -15,21 +15,26 @@ class MyTextField extends StatelessWidget {
     focusNode: MyfocusNode,
       
       controller: controller,
+      style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary ),
       decoration:  InputDecoration(
+       
+        iconColor: Theme.of(context).colorScheme.inversePrimary,
+        hintStyle: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
         prefixIcon: icon,
+        prefixIconColor: Theme.of(context).colorScheme.inversePrimary,
 hintText: hinttext,
-fillColor: Theme.of(context).colorScheme.primary,
-        focusedBorder: const  OutlineInputBorder(
+fillColor: Theme.of(context).colorScheme.inversePrimary,
+        focusedBorder:   OutlineInputBorder(
           
           borderSide: BorderSide(
-            color: Colors.black
+            color: Theme.of(context).colorScheme.primary
 
           )
         ),
         enabledBorder:   OutlineInputBorder(
           
           borderSide: BorderSide(
-            color: Theme.of(context).colorScheme.primary
+            color: Colors.grey
 
           )
         ),

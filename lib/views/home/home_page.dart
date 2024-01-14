@@ -18,7 +18,9 @@ class Homepage extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
 
-        title: Text("H O M E"),
+        title: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text("H O M E")),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0.0,

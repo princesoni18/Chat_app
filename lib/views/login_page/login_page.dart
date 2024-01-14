@@ -34,7 +34,9 @@ class Login_Page extends StatelessWidget {
         //appbar
 
         appBar: AppBar(
-          title: Text('C H A T Z O'),
+          title: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text('C H A T Z O')),
           centerTitle: true,
           backgroundColor: Colors.transparent,
           elevation: 0.0,

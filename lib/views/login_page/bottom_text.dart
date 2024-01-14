@@ -17,13 +17,13 @@ class Bottom_Text extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [ 
            SizedBox(width: MediaQuery.of(context).size.width*0.2,),
-            const Text("New to CHATZO ?",overflow: TextOverflow.ellipsis,),
+             Text("New to CHATZO ?",overflow: TextOverflow.ellipsis,style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),),
           
           
               Expanded(
                 child: GestureDetector(
                   onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Register_Page(),)),
-                  child: Text("Sign Up",style: TextStyle(fontWeight: FontWeight.bold),)),
+                  child: Text("Sign Up",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.blue),)),
               ),
              
           ],

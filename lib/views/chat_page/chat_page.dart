@@ -90,7 +90,15 @@ void scrollDown(){
             ),
             
            const SizedBox(width: 10,),
-               Text(widget.user.name,overflow: TextOverflow.ellipsis,),
+               Expanded(
+                
+                
+                   child: FittedBox(
+                    alignment: Alignment.centerLeft,
+                    fit: BoxFit.scaleDown,
+                    child: Text(widget.user.name,overflow: TextOverflow.ellipsis,)),
+                 ),
+               
             
 
             ],

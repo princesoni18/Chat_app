@@ -41,6 +41,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
+      
+     
 
       theme: BlocProvider.of<ThemeBloc>(context,listen: true).getThemedata,
     home: StreamBuilder(stream: FirebaseAuth.instance.authStateChanges(), 

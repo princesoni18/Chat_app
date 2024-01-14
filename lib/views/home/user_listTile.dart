@@ -37,7 +37,12 @@ class MyUserListBlock extends StatelessWidget {
              ),
            ),
     
-           Text(user.name,style: TextStyle(fontSize: 18,fontWeight: FontWeight.w300),)
+           Expanded(
+             child: FittedBox(
+              alignment: Alignment.centerLeft,
+              fit: BoxFit.scaleDown,
+              child: Text(user.name,style: TextStyle(fontSize: 18,fontWeight: FontWeight.w300),)),
+           )
           ],
         ),
       ),

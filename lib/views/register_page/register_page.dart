@@ -40,8 +40,10 @@ class Register_Page extends StatelessWidget {
         }
       },
       child: Scaffold(
+         backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(
-          title: Text('C H A T Z O'),
+          title: const FittedBox(
+            fit:BoxFit.scaleDown,child: Text('C H A T Z O')),
           centerTitle: true,
           backgroundColor: Colors.transparent,
           elevation: 0.0,
@@ -148,12 +150,12 @@ class Register_Page extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                    SizedBox(width: MediaQuery.of(context).size.width*0.18,),
-                  const Text("already a member ?"),
+                   Text("already a member ?",style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),),
                 
                 Expanded(
                   child: GestureDetector(
                     onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login_Page(),)),
-                    child:const  Text("Log in",style: TextStyle(fontWeight: FontWeight.bold),)),
+                    child:  Text("Log in",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.blue),)),
                 )],
               ),
             )

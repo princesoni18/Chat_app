@@ -1,10 +1,11 @@
 # chat_app
 
-A new Flutter project.
+Clean Flutter project based on bloc architecture.
 
 ## Getting Started
 
 This project is a starting point for a Flutter application.
+this project focuses on creating a simple chatting application with the use of flutter and firebase
 
 A few resources to get you started if this is your first Flutter project:
 
